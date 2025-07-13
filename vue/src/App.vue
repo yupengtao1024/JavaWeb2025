@@ -5,10 +5,11 @@ import Base1 from "./components/base1.vue";
 import Base2 from "./components/base2.vue";
 import Base3 from "./components/base3.vue";
 import Base4 from "./components/base4.vue";
+import Base5 from "./components/base5.vue";
 </script>
 
 <template>
-  <Base4/>
+  <Base5/>
 </template>
 
 <style scoped>
