@@ -10,9 +10,10 @@ import Base6 from "./components/base6.vue";
 import Base7 from "./components/base7.vue";
 import Base8 from "./components/base8.vue";
 import Base9 from "./components/base9.vue";
+import Base10 from "./components/base10.vue";
 </script>
 <template>
-  <Base9/>
+  <Base10/>
 </template>
 
 <style scoped>
