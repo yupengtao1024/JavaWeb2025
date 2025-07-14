@@ -8,10 +8,11 @@ import Base4 from "./components/base4.vue";
 import Base5 from "./components/base5.vue";
 import Base6 from "./components/base6.vue";
 import Base7 from "./components/base7.vue";
+import Base8 from "./components/base8.vue";
 </script>
 
 <template>
-  <Base7/>
+  <Base8/>
 </template>
 
 <style scoped>
