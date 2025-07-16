@@ -12,9 +12,10 @@ import Base8 from "./components/base8.vue";
 import Base9 from "./components/base9.vue";
 import Base10 from "./components/base10.vue";
 import Father from "./components/Father.vue";
+import SlotA from "./components/SlotA.vue";
 </script>
 <template>
-  <Father></Father>
+  <SlotA></SlotA>
 </template>
 
 <style scoped>
