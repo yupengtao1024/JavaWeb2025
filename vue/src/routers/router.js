@@ -20,6 +20,10 @@ const router = createRouter({
         homeView: Home, //在默认页面展示的路由，多选，格式：路由名：视图名
         listView: List,
       },
+    }, {
+      path: '/showAll',
+      // 路由重定向
+      redirect: '/list'
     },
     {
       path: '/home',

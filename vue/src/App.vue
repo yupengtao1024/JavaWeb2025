@@ -7,6 +7,7 @@
     <!-- 1. 路由跳转链接 -->
     <router-link to="/home">home页</router-link> <br />
     <router-link to="/list">list页</router-link> <br />
+    <router-link to="/showAll">showAll页</router-link> <br>
     <router-link to="/add">add页</router-link> <br />
     <router-link to="/update">update页</router-link> <br />
 
