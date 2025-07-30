@@ -1,20 +1,30 @@
 <script setup type="module">
 import axios from 'axios'
-import {onMounted, reactive} from 'vue';
+import {onMounted, ref, reactive, toRaw} from 'vue';
 
 let jsonData = reactive({code: 1, content: '我努力不是为了你而是因为你'})
 
 let getLoveWords = () => {
-  return axios({
-    method: "post", // 请求方式
-    url: "http://api.uomg.com/api/rand.qinghua?format=json",  // 请求的url
-    data: {// 当请求方式为post时,data下的数据以JSON串放入请求体,否则以key=value形式放url后
-      username: "123456"
-    }
-  })
+  try {
+    return  axios.get(
+        'http://api.uomg.com/api/rand.qinghua?format=json',
+        {
+          params: {// 向url后添加的键值对参数
+            format: 'json',
+            username: 'zhangsan',
+            password: '123456'
+          },
+          headers: {// 设置请求头
+            'Accept': 'application/json, text/plain, text/html,*/*'
+          }
+        }
+    )
+  } catch (e) {
+    return  e
+  }
 }
 
-let getLoveMessage = async () => {
+let getLoveMessage =async () => {
   let {data} = await getLoveWords()
   Object.assign(jsonData, data)
 }
