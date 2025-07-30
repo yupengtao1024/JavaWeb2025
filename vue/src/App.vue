@@ -1,53 +1,40 @@
 <script setup type="module">
+import axios from 'axios'
+import {onMounted, reactive} from 'vue';
 
-import {useRouter} from 'vue-router'
+let jsonData = reactive({code: 1, content: '我努力不是为了你而是因为你'})
 
-//创建动态路由对象
-let router = useRouter()
+let getLoveMessage = () => {
+  axios({
+    method: "post", // 请求方式
+    url: "http://api.uomg.com/api/rand.qinghua?format=json",  // 请求的url
+    data: { // 当请求方式为post时,data下的数据以JSON串放入请求体,否则以key=value形式放url后
+      username: "123456"
+    }
+  }).then(
+      (response) => {
+        console.log(response)//响应成功时要执行的函数
+        Object.assign(jsonData, response.data)  //复制响应数据
+      }
+  ).catch(
+      (error) => {
 
-//方法2,第二步，通过绑定的路径传参方法，确定路由和参数
-let showDetail = (id, language) => {
-
-  //动态路由路径传参有下面2种方式
-  // 1  使用拼接字符串方式传递路径参数，
-  router.push(`showDetail/${id}/${language}`)
-  // 2  或者  使用params，进行动态路由路径传参显示
-  //   router.push({name:"showDetail",params:{id:id,language:language}})
+        // 响应失败时要执行的函数
+        console.log(error)
+      }
+  )
 }
 
-//方法4
-let showDetail2 = (id, language) => {
-  /*uri键值对参数,需要使用query */
-  router.push({path: "/showDetail2", query: {id: id, language: language}})
-}
+/* 通过onMounted生命周期,自动加载一次 */
+onMounted(() => {
+  getLoveMessage()
+})
 </script>
 
 <template>
   <div>
-    <h1>App页面</h1>
-    <hr/>
-
-    <!--    路径拼接2个方法-->
-    <!-- 方法1：路径传参 ，第一步，点击后根据router.js进行路由跳转  -->
-    <router-link to="/showDetail/1/JAVA">showDetail路径传参显示JAVA</router-link>
-
-    <!--    方法2： 动态路由路径传参 ,第一步，绑定传参方法-->
-    <button @click="showDetail(1,'JAVA')">showDetail动态路由路径传参显示JAVA</button>
-    <hr/>
-
-    <!-- 键值对参数2个方法 -->
-    <!--    方法3-->
-    <router-link v-bind:to="{path:'/showDetail2',query:{id:1,language:'Java'}}">showDetail2键值对传参显示JAVA
-    </router-link>
-
-    <!--    方法4-->
-    <button @click="showDetail2(1,'JAVA')">showDetail2动态路由键值对传参显示JAVA</button>
-    <hr>
-    showDetail视图展示:
-    <router-view name="showDetailView"></router-view>
-    <hr>
-    showDetail2视图展示:
-    <router-view name="showDetailView2"></router-view>
+    <h1>今日土味情话:{{ jsonData.content }}</h1>
+    <button @click="getLoveMessage">获取今日土味情话</button>
   </div>
 </template>
 
