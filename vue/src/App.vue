@@ -6,25 +6,28 @@ let jsonData = reactive({code: 1, content: '我努力不是为了你而是因为
 
 let getLoveWords = () => {
   try {
-    return  axios.get(
-        'http://api.uomg.com/api/rand.qinghua?format=json',
-        {
-          params: {// 向url后添加的键值对参数
+    return axios.post(
+        'http://api.uomg.com/api/rand.qinghua',
+        {//请求体中的JSON数据
+          username: 'zhangsan',
+          password: '123456'
+        },
+        {// 其他参数
+          params: {// url上拼接的键值对参数
             format: 'json',
-            username: 'zhangsan',
-            password: '123456'
           },
-          headers: {// 设置请求头
-            'Accept': 'application/json, text/plain, text/html,*/*'
+          headers: {// 请求头
+            'Accept': 'application/json, text/plain, text/html,*/*',
+            'X-Requested-With': 'XMLHttpRequest'
           }
         }
     )
   } catch (e) {
-    return  e
+    return e
   }
 }
 
-let getLoveMessage =async () => {
+let getLoveMessage = async () => {
   let {data} = await getLoveWords()
   Object.assign(jsonData, data)
 }
