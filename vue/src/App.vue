@@ -43,8 +43,13 @@ onMounted(() => {
 
 <template>
   <div>
-    <h1>今日土味情话:{{ jsonData.content }}</h1>
-    <button @click="getLoveMessage">获取今日土味情话</button>
+    <hr>
+    <router-link to="/operate">显示操作页</router-link>
+    <br>
+    <router-link to="/list">显示展示页</router-link>
+    <br>
+    <hr>
+    <router-view></router-view>
   </div>
 </template>
 
